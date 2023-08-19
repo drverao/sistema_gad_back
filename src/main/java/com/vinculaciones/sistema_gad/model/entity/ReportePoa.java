@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -15,4 +16,8 @@ public class ReportePoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_reportepoa")
     private Long id_reportepoa;
+    @Column(name = "fecha")
+    private LocalDate fecha;
+    @Column(name = "ejecucion_presupuesto")
+    private double ejecucion_presupuesto;
 }
