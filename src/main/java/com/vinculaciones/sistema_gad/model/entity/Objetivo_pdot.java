@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -28,8 +30,7 @@ public class Objetivo_pdot implements Serializable {
     @JoinColumn(name = "id_componente")
     private Componente componente;
 
-    /*
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "objetivopdot")
     @JsonIgnore
-    private Set<MetaPDOT> lista_metaspdots = new HashSet<>();*/
+    private Set<MetaPDOT> lista_metaspdots = new HashSet<>();
 }

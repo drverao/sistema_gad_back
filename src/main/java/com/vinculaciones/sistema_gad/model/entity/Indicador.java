@@ -32,10 +32,10 @@ public class Indicador implements Serializable {
     @Column(name = "visible")
     private boolean visible;
 
-  /*  //Relacion a proyecto
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "indicadores")
+   //Relacion a proyecto
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "indicador")
     @JsonIgnore
-    private Set<Proyecto> lista_proyectos = new HashSet<>();*/
+    private Set<Proyecto> lista_proyectos = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_meta_pdot")

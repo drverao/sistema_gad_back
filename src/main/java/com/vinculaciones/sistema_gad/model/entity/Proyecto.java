@@ -54,14 +54,11 @@ public class Proyecto implements Serializable {
     public void prePersist(){
         fecha_inicio= new Date();
     }
-    /*@ManyToOne(fetch = FetchType.EAGER)
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_indicador")
     private Indicador indicador;
-     */
 
-   /*  @ManyToOne(fetch = FetchType.EAGER)
-
-    private Componente componente;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_competencia")
     private Competencia competencia;
@@ -69,6 +66,4 @@ public class Proyecto implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "proyecto")
     @JsonIgnore
     private Set<Poa> lista_poas = new HashSet<>();
-
-     */
 }

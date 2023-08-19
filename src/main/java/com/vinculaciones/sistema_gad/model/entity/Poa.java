@@ -57,8 +57,8 @@ public class Poa implements Serializable {
     @JoinColumn(name = "id_administrador")
     private Usuario usuario;
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
-    private Proyecto proyecto;*/
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Proyecto proyecto;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "poa")
     @JsonIgnore

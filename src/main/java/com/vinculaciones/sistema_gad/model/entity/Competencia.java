@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -20,7 +22,7 @@ public class Competencia implements Serializable {
     @Column(name = "visible")
     private boolean visible;
 
-    /*@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "competencia")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "competencia")
     @JsonIgnore
-    private Set<Proyecto> lista_proyectos = new HashSet<>();*/
+    private Set<Proyecto> lista_proyectos = new HashSet<>();
 }
