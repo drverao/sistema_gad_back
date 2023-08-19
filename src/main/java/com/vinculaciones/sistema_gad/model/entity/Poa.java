@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -55,10 +57,10 @@ public class Poa implements Serializable {
     @JoinColumn(name = "id_administrador")
     private Usuario usuario;
 
-    /*@ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Proyecto proyecto;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "poa")
     @JsonIgnore
-    private Set<Actividades> lista_actividades = new HashSet<>();*/
+    private Set<Actividades> lista_actividades = new HashSet<>();
 }

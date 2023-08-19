@@ -28,6 +28,10 @@ public class Usuario{
     @JsonIgnore
     private Set<Poa> lista_poas = new HashSet<>();
 
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
+    @JsonIgnore
+    private Set<ModeloPOA> lista_modelos = new HashSet<>();
+
     public Usuario() {
     }
 
