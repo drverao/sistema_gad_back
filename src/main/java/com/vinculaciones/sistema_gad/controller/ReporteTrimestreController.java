@@ -18,7 +18,7 @@ public class ReporteTrimestreController {
     private ReporteTrimestreService reporteTrimestreService;
 
     @PostMapping("/crear")
-    public ResponseEntity<ReporteTrimestre> crear(ReporteTrimestre rt){
+    public ResponseEntity<ReporteTrimestre> crear(@RequestBody ReporteTrimestre rt){
         try {
             rt.setVisible(true);
             return new ResponseEntity<>(reporteTrimestreService.save(rt), HttpStatus.CREATED);
@@ -50,7 +50,7 @@ public class ReporteTrimestreController {
         } else {
             try {
                 rt.setVisible(false);
-                return ResponseEntity.ok(reporteTrimestreService.save(rt));
+                return new ResponseEntity<>(reporteTrimestreService.save(rt), HttpStatus.OK);
             } catch (Exception e) {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }

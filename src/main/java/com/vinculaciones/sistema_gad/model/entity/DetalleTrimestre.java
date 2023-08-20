@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -35,5 +38,5 @@ public class DetalleTrimestre {
     //relacion con la tabla reporte_trimestre
     @JsonIgnore
     @OneToMany(mappedBy = "detalle_trimestre", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private java.util.Set<ReporteTrimestre> reporte_trimestres = new java.util.HashSet<>();
+    private Set<ReporteTrimestre> reporte_trimestres = new HashSet<>();
 }

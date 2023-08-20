@@ -20,13 +20,13 @@ public class Indicador implements Serializable {
     @Column(name = "id_indicadores")
     private Long id_indicadores;
 
-    @Column(name = "presupuesto_referencial")
-    private double presupuesto_referencial;
+    @Column(name = "nombre", length = 200)
+    private String nombre;
 
-    @Column(name = "fecha_cumplimiento")
-    private Date fecha_cumplimiento;
+    @Column(name = "descripcion", length = 1000)
+    private String descripcion;
 
-    @Column(name = "tipo_evaluacion", length = 1000)
+    @Column(name = "tipo_evaluacion")
     private String tipo_evaluacion;
 
     @Column(name = "visible")
