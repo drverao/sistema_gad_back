@@ -23,4 +23,9 @@ public class Poa_ServiceImpl extends GenericServiceImpl<Poa, Long> implements Po
     public List<Poa> listar() {
         return repository.listarPoas();
     }
+
+    @Override
+    public Poa obtenerPoaId(Long id) {
+        return repository.obtenerPoaId(id);
+    }
 }

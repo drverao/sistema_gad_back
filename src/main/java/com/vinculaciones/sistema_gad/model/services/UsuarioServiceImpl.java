@@ -20,8 +20,17 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long> implem
     }
 
     @Override
-    public Usuario findByUsername(String username) {
+    public Usuario obtenerUsuario(String username) {
         return usuarioRepository.findByUsername(username);
     }
 
+    @Override
+    public List<Usuario> listar() {
+        return usuarioRepository.listar();
+    }
+
+    @Override
+    public Usuario obtenerUsuarioId(Long id) {
+        return usuarioRepository.obtenerUsuarioId(id);
+    }
 }

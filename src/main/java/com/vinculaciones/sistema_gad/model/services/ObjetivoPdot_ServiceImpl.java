@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.model.services;
 
 import com.vinculaciones.sistema_gad.model.entity.Objetivo_pdot;
+import com.vinculaciones.sistema_gad.model.entity.Rol;
 import com.vinculaciones.sistema_gad.model.repository.ObjetivoPdotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
@@ -22,5 +23,10 @@ public class ObjetivoPdot_ServiceImpl extends GenericServiceImpl<Objetivo_pdot, 
     @Override
     public List<Objetivo_pdot> listarObjetivosPdots() {
         return repository.listarObjetivosPdots();
+    }
+
+    @Override
+    public Objetivo_pdot obtenerObjetivoPdotId(Long id) {
+        return repository.obtenerObjetivoPdotId(id);
     }
 }
