@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TrimestreServiceImpl extends GenericServiceImpl<Trimestre, Long> implements TrimestreService{
 
@@ -14,5 +16,10 @@ public class TrimestreServiceImpl extends GenericServiceImpl<Trimestre, Long> im
     @Override
     public CrudRepository<Trimestre, Long> getDao() {
         return trimestreRepository;
+    }
+
+    @Override
+    public List<Trimestre> listarTrimestres() {
+        return trimestreRepository.listarTrimestres();
     }
 }
