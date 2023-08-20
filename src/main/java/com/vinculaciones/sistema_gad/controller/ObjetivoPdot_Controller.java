@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.controller;
 
+import com.vinculaciones.sistema_gad.model.dto.ObjetivoPdot_DTO;
 import com.vinculaciones.sistema_gad.model.entity.Objetivo_pdot;
 import com.vinculaciones.sistema_gad.model.services.ObjetivoPdot_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,5 +97,11 @@ public class ObjetivoPdot_Controller {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @GetMapping("/buscarObjetivoPdotLike/{nombre}")
+    public ResponseEntity<List<ObjetivoPdot_DTO>> buscarObjetivosPdotsPorNombre(@RequestParam("nombre") String nombre) {
+        List<ObjetivoPdot_DTO> objetivosEncontrados = Service.buscarObjetivosPdotsPorNombre(nombre);
+        return ResponseEntity.ok(objetivosEncontrados);
     }
 }

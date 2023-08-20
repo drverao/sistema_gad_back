@@ -35,13 +35,23 @@ public class Persona_Controller {
     }
 
     @GetMapping("/findByCedula/{cedula}")
-    public ResponseEntity<Persona> findByCedula(@PathVariable("cedula") String cedula) {
+    public ResponseEntity<Object> findByCedula(@PathVariable("cedula") String cedula) {
         try {
-            return new ResponseEntity<>(Service.findByCedula(cedula), HttpStatus.OK);
+            Persona persona = Service.findByCedula(cedula);
+            if (persona != null && persona.isVisible()) {
+                return ResponseEntity.ok(persona);
+            } else if (persona != null && !persona.isVisible()) {
+                String mensaje = "La persona no existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "La persona existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
+
     @GetMapping("/findById/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") Long id) {
         try {

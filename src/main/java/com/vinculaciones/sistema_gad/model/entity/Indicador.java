@@ -17,8 +17,8 @@ import java.util.Set;
 public class Indicador implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_indicadores")
-    private Long id_indicadores;
+    @Column(name = "id_indicador")
+    private Long id_indicador;
 
     @Column(name = "nombre", length = 200)
     private String nombre;

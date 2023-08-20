@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.controller;
 
+import com.vinculaciones.sistema_gad.model.dto.Componente_DTO;
 import com.vinculaciones.sistema_gad.model.entity.Componente;
 import com.vinculaciones.sistema_gad.model.services.Componente_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,5 +98,11 @@ public class Componente_Controller {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @GetMapping("/buscarComponenteLike/{nombre}")
+    public ResponseEntity<List<Componente_DTO>> buscarComponentesPorNombre(@RequestParam("nombre") String nombre) {
+        List<Componente_DTO> componentesEncontrados = Service.buscarComponentesPorNombre(nombre);
+        return ResponseEntity.ok(componentesEncontrados);
     }
 }

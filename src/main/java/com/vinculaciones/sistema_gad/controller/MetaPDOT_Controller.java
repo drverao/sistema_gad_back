@@ -1,6 +1,9 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.Componente_DTO;
+import com.vinculaciones.sistema_gad.model.dto.MetaPdot_DTO;
+import com.vinculaciones.sistema_gad.model.entity.Componente;
 import com.vinculaciones.sistema_gad.model.entity.MetaPDOT;
 import com.vinculaciones.sistema_gad.model.services.MetaPDOT_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +85,29 @@ public class MetaPDOT_Controller {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            MetaPDOT meta = Service.obtenerMetaPdotId(id);
+            if (meta != null && meta.isVisible()) {
+                return ResponseEntity.ok(meta);
+            } else if (meta != null && !meta.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarMetaPDOTLike/{nombre}")
+    public ResponseEntity<List<MetaPdot_DTO>> buscarMetasPdotsPorNombre(@RequestParam("nombre") String nombre) {
+        List<MetaPdot_DTO> metasEncontradas = Service.buscarMetasPdotsPorNombre(nombre);
+        return ResponseEntity.ok(metasEncontradas);
     }
 }
