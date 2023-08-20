@@ -4,10 +4,9 @@ import com.vinculaciones.sistema_gad.model.entity.Persona;
 import org.springframework.data.jpa.repository.Query;
 
 public interface Persona_Service extends GenericService<Persona, Long>{
-    public Persona obtenerPersona(String username);
+    public Persona obtenerPersonaPorNombreUsuario(String username);
 
-    public Persona obtenerPersonaPorIdUsuario(Long id);
     public Persona findByCedula(String cedula);
 
-
+    public Persona obtenerPersonaId(Long id);
 }

@@ -1,4 +1,5 @@
 package com.vinculaciones.sistema_gad.controller;
+import com.vinculaciones.sistema_gad.model.entity.Persona;
 import com.vinculaciones.sistema_gad.model.entity.Poa;
 import com.vinculaciones.sistema_gad.model.entity.Rol;
 import com.vinculaciones.sistema_gad.model.services.Poa_Service;
@@ -20,7 +21,7 @@ public class Rol_Controller {
     @PostMapping("/crear")
     public ResponseEntity<Rol> crear(@RequestBody Rol r) {
         try {
-            r.setVisible(true);
+            //r.setVisible(true);
             return new ResponseEntity<>(Service.save(r), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -44,6 +45,23 @@ public class Rol_Controller {
         }
     }
 
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Rol rol = Service.obtenerRolId(id);
+            if (rol != null && rol.isVisible()) {
+                return ResponseEntity.ok(rol);
+            } else if (rol != null && !rol.isVisible()) {
+                String mensaje = "El Rol no existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "El Rol existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Rol rol) {
         return Service.delete(id);

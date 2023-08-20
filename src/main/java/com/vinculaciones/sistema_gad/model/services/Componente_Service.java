@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface Componente_Service extends GenericService<Componente, Long>{
     public List<Componente> listar();
+
+    public Componente obtenerComponenteId(Long id);
+
 }

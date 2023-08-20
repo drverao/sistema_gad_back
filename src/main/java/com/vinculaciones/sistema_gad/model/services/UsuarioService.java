@@ -9,4 +9,6 @@ public interface UsuarioService extends GenericService<Usuario, Long> {
 
     public List<Usuario> listar();
 
+    public Usuario obtenerUsuarioId(Long id);
+
 }

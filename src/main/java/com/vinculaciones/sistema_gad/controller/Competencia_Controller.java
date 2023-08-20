@@ -19,7 +19,7 @@ public class Competencia_Controller {
     @PostMapping("/crear")
     public ResponseEntity<Competencia> crear(@RequestBody Competencia r) {
         try {
-            r.setVisible(true);
+            //r.setVisible(true);
             return new ResponseEntity<>(Service.save(r), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -40,6 +40,24 @@ public class Competencia_Controller {
             return new ResponseEntity<>(Service.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Competencia competencia = Service.obtenerCompetenciaId(id);
+            if (competencia != null && competencia.isVisible()) {
+                return ResponseEntity.ok(competencia);
+            } else if (competencia != null && !competencia.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
 

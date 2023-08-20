@@ -23,4 +23,9 @@ public class Componente_ServiceImpl extends GenericServiceImpl<Componente, Long>
     public List<Componente> listar() {
         return repository.listarComponentes();
     }
+
+    @Override
+    public Componente obtenerComponenteId(Long id) {
+        return repository.obtenerComponenteId(id);
+    }
 }

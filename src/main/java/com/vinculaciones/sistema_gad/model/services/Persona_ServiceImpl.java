@@ -12,22 +12,22 @@ public class Persona_ServiceImpl extends GenericServiceImpl<Persona, Long> imple
     private Persona_repository repository;
     @Override
     public CrudRepository<Persona, Long > getDao() {
-
         return repository;
     }
     @Override
-    public Persona obtenerPersona(String username) {
-        return repository.obtenerPersona(username);
-    }
-
-    @Override
-    public Persona obtenerPersonaPorIdUsuario(Long id) {
-        return repository.obtenerPersonaUsuario(id);    
+    public Persona obtenerPersonaPorNombreUsuario(String username) {
+        return repository.obtenerPersonaPorNombreUsuario(username);
     }
 
     @Override
     public Persona findByCedula(String cedula) {
         return repository.findByCedula(cedula);
     }
+
+    @Override
+    public Persona obtenerPersonaId(Long id) {
+        return repository.obtenerPersonaId(id);
+    }
+
 
 }

@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.controller;
 
+import com.vinculaciones.sistema_gad.model.entity.Poa;
 import com.vinculaciones.sistema_gad.model.entity.Usuario;
 import com.vinculaciones.sistema_gad.model.repository.UsuarioRepository;
 import com.vinculaciones.sistema_gad.model.services.RolService;
@@ -66,6 +67,23 @@ public class UsuarioController {
         }
     }
 
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Usuario usuario = usuarioService.obtenerUsuarioId(id);
+            if (usuario != null && usuario.isVisible()) {
+                return ResponseEntity.ok(usuario);
+            } else if (usuario != null && !usuario.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Usuario usuario) {
         return usuarioService.delete(id);

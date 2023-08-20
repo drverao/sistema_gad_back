@@ -15,6 +15,7 @@ import java.util.Set;
 public class Rol {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_rol")
     private Long id_rol;
     @Column(name = "nombre")
@@ -26,12 +27,4 @@ public class Rol {
     @JsonIgnore
     private Set<Usuario> usuarios = new HashSet<>();
 
-    public Rol(){
-
-    }
-
-    public Rol(Long id_rol, String nombre) {
-        this.id_rol = id_rol;
-        this.nombre = nombre;
-    }
 }

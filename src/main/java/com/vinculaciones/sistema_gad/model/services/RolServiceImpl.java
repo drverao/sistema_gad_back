@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.model.services;
 
+import com.vinculaciones.sistema_gad.model.entity.Persona;
 import com.vinculaciones.sistema_gad.model.entity.Rol;
 import com.vinculaciones.sistema_gad.model.repository.RolRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +21,10 @@ public class RolServiceImpl extends GenericServiceImpl<Rol, Long> implements Rol
     @Override
     public List<Rol> listarRoles() {
         return rolRepository.listarRoles();
+    }
+
+    @Override
+    public Rol obtenerRolId(Long id) {
+        return rolRepository.obtenerRolId(id);
     }
 }

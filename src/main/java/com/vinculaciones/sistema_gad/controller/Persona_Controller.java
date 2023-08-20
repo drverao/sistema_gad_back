@@ -18,7 +18,7 @@ public class Persona_Controller {
     @PostMapping("/crear")
     public ResponseEntity<Persona> crear(@RequestBody Persona r) {
         try {
-r.setVisible(true);
+            r.setVisible(true);
             return new ResponseEntity<>(Service.save(r), HttpStatus.CREATED);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -34,15 +34,6 @@ r.setVisible(true);
         }
     }
 
-
-    @GetMapping("/buscarpersona/{username}")
-    public ResponseEntity<Persona> obtenerPersona(@PathVariable("username") String username) {
-        try {
-            return new ResponseEntity<>(Service.obtenerPersona(username), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
     @GetMapping("/findByCedula/{cedula}")
     public ResponseEntity<Persona> findByCedula(@PathVariable("cedula") String cedula) {
         try {
@@ -51,12 +42,39 @@ r.setVisible(true);
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/buscar/{id}")
+    @GetMapping("/findById/{id}")
     public ResponseEntity<Persona> getById(@PathVariable("id") Long id) {
         try {
             return new ResponseEntity<>(Service.findById(id), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Persona persona = Service.obtenerPersonaId(id);
+            if (persona != null && persona.isVisible()) {
+                return ResponseEntity.ok(persona);
+            } else if (persona != null && !persona.isVisible()) {
+                String mensaje = "La persona no existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "La persona existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/buscarPorUsuario/{username}")
+    public ResponseEntity<Persona> obtenerPersonaPorNombreUsuario(@PathVariable String username) {
+        try {
+            return ResponseEntity.ok(Service.obtenerPersonaPorNombreUsuario(username));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
     }
     @DeleteMapping("/eliminar/{id}")
@@ -81,15 +99,6 @@ r.setVisible(true);
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
 
-        }
-    }
-    
-    @GetMapping("/buscarpersonaId/{id}")
-    public ResponseEntity<Persona> obtenerPersonaUsuarioId(@PathVariable("id") Long id) {
-        try {
-            return new ResponseEntity<>(Service.obtenerPersonaPorIdUsuario(id), HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

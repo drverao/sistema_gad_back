@@ -23,4 +23,9 @@ public class Competencia_ServiceImpl extends GenericServiceImpl<Competencia, Lon
     public List<Competencia> listar() {
         return repository.listarCompetencias();
     }
+
+    @Override
+    public Competencia obtenerCompetenciaId(Long id) {
+        return repository.obtenerCompetenciaId(id);
+    }
 }

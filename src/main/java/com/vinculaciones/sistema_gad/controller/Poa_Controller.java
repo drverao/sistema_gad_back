@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.controller;
 import com.vinculaciones.sistema_gad.model.entity.Poa;
+import com.vinculaciones.sistema_gad.model.entity.Rol;
 import com.vinculaciones.sistema_gad.model.services.Poa_Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,23 @@ public class Poa_Controller {
         }
     }
 
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Poa poa = Service.obtenerPoaId(id);
+            if (poa != null && poa.isVisible()) {
+                return ResponseEntity.ok(poa);
+            } else if (poa != null && !poa.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Poa Poa) {
         return Service.delete(id);

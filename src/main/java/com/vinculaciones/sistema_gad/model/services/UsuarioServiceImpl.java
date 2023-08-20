@@ -29,4 +29,8 @@ public class UsuarioServiceImpl extends GenericServiceImpl<Usuario, Long> implem
         return usuarioRepository.listar();
     }
 
+    @Override
+    public Usuario obtenerUsuarioId(Long id) {
+        return usuarioRepository.obtenerUsuarioId(id);
+    }
 }

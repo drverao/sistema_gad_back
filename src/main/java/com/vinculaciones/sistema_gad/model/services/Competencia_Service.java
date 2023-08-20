@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface Competencia_Service extends GenericService<Competencia, Long>{
     public List<Competencia> listar();
+
+    public Competencia obtenerCompetenciaId(Long id);
 }

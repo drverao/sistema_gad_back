@@ -43,6 +43,24 @@ public class Componente_Controller {
         }
     }
 
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Componente componente = Service.obtenerComponenteId(id);
+            if (componente != null && componente.isVisible()) {
+                return ResponseEntity.ok(componente);
+            } else if (componente != null && !componente.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activa.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
     @DeleteMapping("/eliminar/{id}")
     public ResponseEntity<?> eliminar(@PathVariable Long id, @RequestBody Componente Componente) {
         return Service.delete(id);
