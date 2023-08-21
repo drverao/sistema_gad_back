@@ -24,4 +24,9 @@ public class ObjetivoODS_ServiceImpl extends GenericServiceImpl<ObjetivoODS, Lon
     public List<ObjetivoODS> listar() {
         return repository.listarObjetivosODS();
     }
+    @Override
+    public List<ObjetivoODS> buscarPorNombre(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
 }

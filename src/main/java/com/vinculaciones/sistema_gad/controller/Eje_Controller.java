@@ -79,4 +79,17 @@ public class Eje_Controller {
             }
         }
     }
+    @GetMapping("/buscarPorNombre/{nombre}")
+    public ResponseEntity<List<Eje>> getByNombre(@PathVariable("nombre") String nombre) {
+        try {
+            List<Eje> ejes = Service.buscarPorNombre(nombre);
+            if (ejes.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(ejes, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

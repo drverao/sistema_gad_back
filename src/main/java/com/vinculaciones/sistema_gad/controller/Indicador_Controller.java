@@ -72,8 +72,8 @@ public class Indicador_Controller {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             try {
-                a.setPresupuesto_referencial(p.getPresupuesto_referencial());
-                a.setFecha_cumplimiento(p.getFecha_cumplimiento());
+                a.setNombre(p.getNombre());
+                a.setDescripcion(p.getDescripcion());
                 a.setTipo_evaluacion(p.getTipo_evaluacion());
                 a.setMetapdot(p.getMetapdot());
                 a.setVisible(p.isVisible());
