@@ -10,4 +10,7 @@ import java.util.List;
 public interface ObjetivoPNDRepository extends JpaRepository<ObjetivoPND, Long> {
     @Query(value = "SELECT * from objetivopnd where visible =true ORDER BY nombre ASC", nativeQuery = true)
     List<ObjetivoPND> listarObjetivosPNDS();
+    @Query(value = "SELECT * FROM objetivopnd WHERE nombre LIKE %?1% AND visible = true", nativeQuery = true)
+    List<ObjetivoPND> findByNombreContaining(String nombre);
+
 }

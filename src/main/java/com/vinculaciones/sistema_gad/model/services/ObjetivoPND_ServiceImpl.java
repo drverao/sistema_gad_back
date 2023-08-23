@@ -24,4 +24,9 @@ public class ObjetivoPND_ServiceImpl extends GenericServiceImpl<ObjetivoPND, Lon
     public List<ObjetivoPND> listar() {
         return repository.listarObjetivosPNDS();
     }
+    @Override
+    public List<ObjetivoPND> buscarPorNombre(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
 }

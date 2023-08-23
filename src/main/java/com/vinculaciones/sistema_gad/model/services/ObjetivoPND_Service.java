@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface ObjetivoPND_Service extends GenericService<ObjetivoPND, Long>{
     public List<ObjetivoPND> listar();
+    List<ObjetivoPND> buscarPorNombre(String nombre);
+
 }
