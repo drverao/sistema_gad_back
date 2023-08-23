@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.ProyectoResumenDTO;
 import com.vinculaciones.sistema_gad.model.entity.Proyecto;
 import com.vinculaciones.sistema_gad.model.services.Proyecto_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -90,5 +91,11 @@ public class Proyecto_Controller {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @GetMapping("/listarProyectosConRelaciones")
+    public ResponseEntity<List<ProyectoResumenDTO>> obtenerProyectosConRelaciones() {
+        List<ProyectoResumenDTO> proyectos = Service.listarProyectosConRelaciones();
+        return ResponseEntity.ok(proyectos);
     }
 }

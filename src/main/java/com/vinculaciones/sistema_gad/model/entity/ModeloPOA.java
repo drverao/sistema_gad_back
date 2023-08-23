@@ -18,7 +18,7 @@ public class ModeloPOA implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_modelo_poa")
-    private Long id_modelopoa;
+    private Long id_modelo_poa;
 
     @Column(name = "nombre", length = 100)
     private String nombre;

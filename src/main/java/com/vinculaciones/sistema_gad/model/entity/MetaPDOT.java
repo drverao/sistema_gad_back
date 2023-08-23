@@ -34,7 +34,7 @@ public class MetaPDOT implements Serializable {
 
 
    @ManyToOne(fetch = FetchType.EAGER)
-   @JoinColumn(name="id_objetivopdot")
+   @JoinColumn(name="id_objetivo_pdot")
    private Objetivo_pdot objetivopdot;
 
 

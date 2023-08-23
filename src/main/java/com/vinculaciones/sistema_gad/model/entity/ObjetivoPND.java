@@ -17,7 +17,7 @@ public class ObjetivoPND implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_objetivo_pnd")
-    private Long id_objetivopnd;
+    private Long id_objetivo_pnd;
     @Column(name = "nombre", length = 200)
     private String nombre;
     @Column(name = "descripcion", length = 1000)
