@@ -1,6 +1,8 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.Indicador_DTO;
+import com.vinculaciones.sistema_gad.model.entity.Componente;
 import com.vinculaciones.sistema_gad.model.entity.Indicador;
 import com.vinculaciones.sistema_gad.model.services.Indicador_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,5 +84,28 @@ public class Indicador_Controller {
                 return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
         }
+    }
+
+    @GetMapping("/findByIdAndVisibleTrue/{id}")
+    public ResponseEntity<Object> getByIdVisibleTrue(@PathVariable("id") Long id) {
+        try {
+            Indicador indicador = Service.obtenerIndicadorId(id);
+            if (indicador != null && indicador.isVisible()) {
+                return ResponseEntity.ok(indicador);
+            } else if (indicador != null && !indicador.isVisible()) {
+                String mensaje = "No existe en la base de datos.";
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(mensaje);
+            } else {
+                String mensaje = "Existe en la base de datos, pero no está activo.";
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensaje);
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+    @GetMapping("/buscarIndicadorLike/{nombre}")
+    public ResponseEntity<List<Indicador_DTO>> buscarComponentesPorNombre(@RequestParam("nombre") String nombre) {
+        List<Indicador_DTO> indicadoresEncontrados = Service.buscarIndicadoresPorNombre(nombre);
+        return ResponseEntity.ok(indicadoresEncontrados);
     }
 }

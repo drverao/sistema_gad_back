@@ -14,4 +14,8 @@ public interface ObjetivoPdotRepository extends JpaRepository<Objetivo_pdot, Lon
 
     @Query(value = "SELECT * FROM objetivospdot WHERE id_objetivo_pdot= :id AND visible = true", nativeQuery = true)
     Objetivo_pdot obtenerObjetivoPdotId(@Param("id") Long id);
+
+    @Query(value = "SELECT id_objetivo_pdot, nombre, descripcion FROM objetivospdot WHERE LOWER(nombre) LIKE LOWER(CONCAT('%', :nombre, '%')) AND visible = true", nativeQuery = true)
+    List<Object[]> buscarObjetivosPdotsPorNombre(@Param("nombre") String nombre);
+
 }
