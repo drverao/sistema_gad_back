@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Componente_ServiceImpl extends GenericServiceImpl<Componente, Long> implements Componente_Service {
+public class    Componente_ServiceImpl extends GenericServiceImpl<Componente, Long> implements Componente_Service {
 
     @Autowired
     private ComponenteRepository repository;
