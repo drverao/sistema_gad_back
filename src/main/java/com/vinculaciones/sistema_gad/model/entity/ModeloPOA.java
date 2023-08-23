@@ -32,11 +32,10 @@ public class ModeloPOA implements Serializable {
     @Column(name = "visible")
     private boolean visible;
 
-   /* @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="id_usuario")
+   @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="id_super_admin")
     private Usuario usuario;
 
-    */
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "modelopoa")
     @JsonIgnore

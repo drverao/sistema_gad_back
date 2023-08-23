@@ -17,7 +17,7 @@ public class MetaPDOT implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_meta_pdot")
-    private Long id_objetivopnd;
+    private Long id_meta_pdot;
 
     @Column(name = "nombre", length = 200)
     private String nombre;
@@ -33,15 +33,12 @@ public class MetaPDOT implements Serializable {
 
 
 
-   /* @ManyToOne(fetch = FetchType.EAGER)
+   @ManyToOne(fetch = FetchType.EAGER)
    @JoinColumn(name="id_objetivopdot")
-    private ObjetivoPDOT objetivopdot;
-
+   private Objetivo_pdot objetivopdot;
 
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "metapdot")
     @JsonIgnore
-    private Set<Indicadores> lista_indicadores = new HashSet<>();
-
-    */
+    private Set<Indicador> lista_indicadores = new HashSet<>();
 }

@@ -24,4 +24,9 @@ public class Eje_ServiceImpl extends GenericServiceImpl<Eje, Long> implements Ej
     public List<Eje> listar() {
         return repository.listarEje();
     }
+    @Override
+    public List<Eje> buscarPorNombre(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
 }

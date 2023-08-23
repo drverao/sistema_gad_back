@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface Programa_Service extends GenericService<Programa, Long>{
     public List<Programa> listar();
+    List<Programa> buscarPorNombre(String nombre);
+
 }

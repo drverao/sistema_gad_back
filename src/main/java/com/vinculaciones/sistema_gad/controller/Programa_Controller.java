@@ -80,4 +80,16 @@ public class Programa_Controller {
             }
         }
     }
+    @GetMapping("/buscarPorNombre/{nombre}")
+    public ResponseEntity<List<Programa>> getByNombre(@PathVariable("nombre") String nombre) {
+        try {
+            List<Programa> programas = Service.buscarPorNombre(nombre);
+            if (programas.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(programas, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

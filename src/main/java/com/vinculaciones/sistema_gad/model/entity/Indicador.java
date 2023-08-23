@@ -17,25 +17,25 @@ import java.util.Set;
 public class Indicador implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_indicadores")
-    private Long id_indicadores;
+    @Column(name = "id_indicador")
+    private Long id_indicador;
 
-    @Column(name = "presupuesto_referencial")
-    private double presupuesto_referencial;
+    @Column(name = "nombre", length = 200)
+    private String nombre;
 
-    @Column(name = "fecha_cumplimiento")
-    private Date fecha_cumplimiento;
+    @Column(name = "descripcion", length = 1000)
+    private String descripcion;
 
-    @Column(name = "tipo_evaluacion", length = 1000)
+    @Column(name = "tipo_evaluacion")
     private String tipo_evaluacion;
 
     @Column(name = "visible")
     private boolean visible;
 
-  /*  //Relacion a proyecto
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "indicadores")
+   //Relacion a proyecto
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "indicador")
     @JsonIgnore
-    private Set<Proyecto> lista_proyectos = new HashSet<>();*/
+    private Set<Proyecto> lista_proyectos = new HashSet<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name="id_meta_pdot")
