@@ -24,4 +24,9 @@ public class Programa_ServiceImpl extends GenericServiceImpl<Programa, Long> imp
     public List<Programa> listar() {
         return repository.listarProgramas();
     }
+    @Override
+    public List<Programa> buscarPorNombre(String nombre) {
+        return repository.findByNombreContaining(nombre);
+    }
+
 }

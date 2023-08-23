@@ -80,4 +80,17 @@ public class ObjetivoPND_Controller {
             }
         }
     }
+    @GetMapping("/buscarPorNombre/{nombre}")
+    public ResponseEntity<List<ObjetivoPND>> getByNombre(@PathVariable("nombre") String nombre) {
+        try {
+            List<ObjetivoPND> objetivos = Service.buscarPorNombre(nombre);
+            if (objetivos.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            }
+            return new ResponseEntity<>(objetivos, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
