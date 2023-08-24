@@ -1,5 +1,6 @@
 package com.vinculaciones.sistema_gad.controller;
 
+import com.vinculaciones.sistema_gad.model.dto.Competencia_DTO;
 import com.vinculaciones.sistema_gad.model.entity.Competencia;
 import com.vinculaciones.sistema_gad.model.services.Competencia_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -97,4 +98,10 @@ public class Competencia_Controller {
             }
         }
     }
+    @GetMapping("/buscarcompetencianombre/{nombre}")
+    public ResponseEntity<List<Competencia_DTO>> buscarCompetenciasPorNombreDTO(@PathVariable("nombre") String nombre) {
+        List<Competencia_DTO> competenciasEncontradas = Service.buscarCompetenciasPorNombreDTO(nombre);
+        return ResponseEntity.ok(competenciasEncontradas);
+    }
+
 }

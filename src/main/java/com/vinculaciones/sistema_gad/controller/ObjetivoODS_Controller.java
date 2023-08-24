@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.ObjetivoOds_DTO;
 import com.vinculaciones.sistema_gad.model.entity.ObjetivoODS;
 import com.vinculaciones.sistema_gad.model.services.ObjetivoODS_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,17 +81,11 @@ public class ObjetivoODS_Controller {
             }
         }
     }
-    @GetMapping("/buscarPorNombre/{nombre}")
-    public ResponseEntity<List<ObjetivoODS>> getByNombre(@PathVariable("nombre") String nombre) {
-        try {
-            List<ObjetivoODS> objetivos = Service.buscarPorNombre(nombre);
-            if (objetivos.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(objetivos, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/buscarobjetivoODSnombre/{nombre}")
+    public ResponseEntity<List<ObjetivoOds_DTO>> buscarObjetivosODSPorNombreDTO(@PathVariable("nombre") String nombre) {
+        List<ObjetivoOds_DTO> objetivosEncontrados = Service.buscarObjetivosODSPorNombreDTO(nombre);
+        return ResponseEntity.ok(objetivosEncontrados);
     }
+
 
 }
