@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.Programa_DTO;
 import com.vinculaciones.sistema_gad.model.entity.Programa;
 import com.vinculaciones.sistema_gad.model.services.Programa_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,16 +81,10 @@ public class Programa_Controller {
             }
         }
     }
-    @GetMapping("/buscarPorNombre/{nombre}")
-    public ResponseEntity<List<Programa>> getByNombre(@PathVariable("nombre") String nombre) {
-        try {
-            List<Programa> programas = Service.buscarPorNombre(nombre);
-            if (programas.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(programas, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/buscarprogramanombre/{nombre}")
+    public ResponseEntity<List<Programa_DTO>> buscarProgramasPorNombreDTO(@PathVariable("nombre") String nombre) {
+        List<Programa_DTO> programasEncontrados = Service.buscarProgramasPorNombreDTO(nombre);
+        return ResponseEntity.ok(programasEncontrados);
     }
+
 }

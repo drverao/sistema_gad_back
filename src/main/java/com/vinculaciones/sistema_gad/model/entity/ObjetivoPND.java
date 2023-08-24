@@ -30,10 +30,9 @@ public class ObjetivoPND implements Serializable {
     @JoinColumn(name="id_eje")
     private Eje eje;
 
-   /* //Relacion a proyecto
+    //Relacion a proyecto
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "pnd")
     @JsonIgnore
     private Set<Proyecto> lista_proyectos = new HashSet<>();
 
-    */
 }

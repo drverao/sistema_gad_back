@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.Eje_DTO;
 import com.vinculaciones.sistema_gad.model.entity.Eje;
 import com.vinculaciones.sistema_gad.model.services.Eje_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,17 +80,11 @@ public class Eje_Controller {
             }
         }
     }
-    @GetMapping("/buscarPorNombre/{nombre}")
-    public ResponseEntity<List<Eje>> getByNombre(@PathVariable("nombre") String nombre) {
-        try {
-            List<Eje> ejes = Service.buscarPorNombre(nombre);
-            if (ejes.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-            }
-            return new ResponseEntity<>(ejes, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/buscarejenombre/{nombre}")
+    public ResponseEntity<List<Eje_DTO>> buscarEjesPorNombreDTO(@PathVariable("nombre") String nombre) {
+        List<Eje_DTO> ejesEncontrados = Service.buscarEjesPorNombreDTO(nombre);
+        return ResponseEntity.ok(ejesEncontrados);
     }
+
 
 }

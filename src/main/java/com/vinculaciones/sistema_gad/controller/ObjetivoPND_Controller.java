@@ -1,6 +1,7 @@
 package com.vinculaciones.sistema_gad.controller;
 
 
+import com.vinculaciones.sistema_gad.model.dto.ObjetivoPnd_DTO;
 import com.vinculaciones.sistema_gad.model.entity.ObjetivoPND;
 import com.vinculaciones.sistema_gad.model.services.ObjetivoPND_Service;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,17 +81,11 @@ public class ObjetivoPND_Controller {
             }
         }
     }
-    @GetMapping("/buscarPorNombre/{nombre}")
-    public ResponseEntity<List<ObjetivoPND>> getByNombre(@PathVariable("nombre") String nombre) {
-        try {
-            List<ObjetivoPND> objetivos = Service.buscarPorNombre(nombre);
-            if (objetivos.isEmpty()) {
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-            }
-            return new ResponseEntity<>(objetivos, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+    @GetMapping("/buscarobjetivoPNDSnombre/{nombre}")
+    public ResponseEntity<List<ObjetivoPnd_DTO>> buscarObjetivosPNDSPorNombreDTO(@PathVariable("nombre") String nombre) {
+        List<ObjetivoPnd_DTO> objetivosEncontrados = Service.buscarObjetivosPNDSPorNombreDTO(nombre);
+        return ResponseEntity.ok(objetivosEncontrados);
     }
+
 
 }
