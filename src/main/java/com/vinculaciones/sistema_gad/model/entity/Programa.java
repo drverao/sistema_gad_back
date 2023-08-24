@@ -17,7 +17,7 @@ public class Programa implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_programa")
-    private Long id_objetivopnd;
+    private Long id_programa;
     @Column(name = "nombre", length = 200)
     private String nombre;
     @Column(name = "descripcion", length = 1000)

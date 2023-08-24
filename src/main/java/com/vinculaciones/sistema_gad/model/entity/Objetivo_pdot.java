@@ -12,12 +12,12 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "objetivospdot")
+@Table(name = "objetivopdot")
 public class Objetivo_pdot implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_objetivo_pdot")
-    private Long id_objetivopdto;
+    private Long id_objetivo_pdot;
     @Column(name = "nombre", length = 200)
     private String nombre;
     @Column(name = "descripcion", length = 1000)
